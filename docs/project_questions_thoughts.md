@@ -2,3 +2,11 @@
 <ul><li>Can I save the file to csv without the headers?</li>
     <li>Didn't the spaCy literature say that sentences should be separated by spaces?</li></ul></ul>
 ![](..\images\create_spaCy_NER_model_dataset_data_save.JPG)
+
+
+
+
+
+
+### Helpful Articles
+https://zachlim98.github.io/me/2021-03/spacy3-ner-tutorial
