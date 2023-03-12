@@ -27,7 +27,7 @@ To focus the research, training, and building of the custom NER model, the follo
 <p>The data used to train both the existing spaCy and the custom CRF NER model is a combination of two datasets--eng.bio and trivia.bio--that are a part of the Spoken Language Systems (SLS) project in MIT's Computer Science and Artificial Intelligence Laboratory.  Each dataset includes a list of movie trivia questions and an entity tag.  In training the models, a supervised learning task, the dependent target variable is the NER tag while the words in the trivia questions form the basis for the independent variable features.  Read on for more information on the dataset</p>
 
 
-**eng Dataset**
+**Eng Dataset**
 
 eng.bio is a 1.9mb dataset that consists of 12,218 simple movie questions over 124,177 rows. Each row in the dataset consists of an IOB2 tag (more on IOB2 below) and a word from a specific movie trivia question.  The boundary of each move trivia question in the file is identified by a blank return line appearing between the previous and subsequent questions.  The following target dependent variable movie entities are identified in the eng.bio data: 'OTHER', 'ACTOR', 'YEAR', 'TITLE', 'GENRE', 'DIRECTOR', 'SONG', 'PLOT', 'REVIEW', 'CHARACTER', 'RATING', 'RATINGS_AVERAGE', 'TRAILER'.
 <br>
@@ -38,9 +38,39 @@ The second dataset, called trivia.bio, is 3.0mb, and consists of 9,769 complex m
 <br>
 
 **IOB2 Format**
+
 IOB2 (Inside, Outside, Beginning) format "is a common tagging format for tagging tokens in a chunking task in computational linguistics... The I- prefix before a tag indicates that the tag is inside a chunk.  An O tag indicates that token belongs to no chunk...The B-tag is used in the beginning of every chunk (Wikipedia 2022).  Each dataset has two columns: an IOB2 tag and the word that is being tagged.</p>
 <br>
 
+
+<p>The below table describes the specific target variables and shows the relationship between entities in the two datasets.</p>
+
+|eng variable            |trivia variable  |description                      |
+| ---------------------- | -----------| ---                                  |
+|outside                 | outside    | untracked entity                     |
+|actor                   |  actor     | person's name acting in the movie    |
+|year                   |year      | two and four digit years            |      
+| genre                  | genre      | movie's subject matter               |
+| director               | director   | person's name in charge of movie     |
+| song                   | soundtrack | song's in a movie                    |
+| plot                   | plot       | movie's story line                   |
+| review, ratings_average| opinion    | words describing the movie           |
+| character              | character_name| person's name in movie story line |
+| rating                 | na         | classification of movie appropriateness for different age groups
+| title                  | na         | movie name
+| trailer                | na         | identfies a word as preview or trailer|
+| na                     | award      | recognition for acheivement in a given category
+| na                     | origin     | source of inspiration for movie script |
+| na                     | relationship| how movie is related to other movies in the same story line|
+|
+
+<br>
+
+The data can be found here:
+
+https://groups.csail.mit.edu/sls/downloads/movie/
+
+<p></p>
 
 
 
@@ -62,4 +92,6 @@ Medium. https://medium.com/mysuperai/what-is-named-entity-recognition-ner-and-ho
 
 Vasilis, Theo. (2022 February 9). When Data Gets Too Big Why You Need Structured Data. apify.
 https://blog.apify.com/when-data-gets-too-big-why-you-need-structured-data/
+
+Wikipedia. (2022, December 13). Inside-outside-beginning(tagging). https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/reference_list_electronic_sources.html 
 
