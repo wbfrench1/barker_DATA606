@@ -22,7 +22,11 @@ This project centers on the the creation of a specialized NER model--based on co
 
 To focus the research, training, and building of the custom NER model, the following questions were posed.  At what performance level can a custom NER model built on a CRF be trained to work on specific data sets?  How well can spaCy's professionally built generic NER model be trained on the movie triviadata set, and how does spaCy's model perform compared to the custom CRF-based named entity recognition model?  Since the performance of both of these models depends in part on how they are trained, what kinds of techniques can be used to improve their performance?  Finally, the project includes a shallow dive into the workings of both a CRF NER model and spaCy's model.
 
-## 3. Dataset
+## 3. Related Work
+
+There is a large body of existing work investigating the application of CRF to the problem of NER.  Tran et al. (2017) developed "a method that combines active learning and self-learning to reduce the labeling effort for the named entity recognition task from tweet streams by using both machine-labeled and manually-labeled data...[showing] it can significantly imporve the performance of the [CRF] systems (Tran et al., 2017, p. 1)."  
+
+## 4. Dataset
 
 <p>The data used to train both the existing spaCy and the custom CRF NER model is a combination of two datasets--eng.bio and trivia.bio--that are a part of the Spoken Language Systems (SLS) project in MIT's Computer Science and Artificial Intelligence Laboratory.  Each dataset includes a list of movie trivia questions and an entity tag.  In training the models, a supervised learning task, the dependent target variable is the NER tag while the words in the trivia questions form the basis for the independent variable features.  Read on for more information on the dataset</p>
 
@@ -89,6 +93,9 @@ https://groups.csail.mit.edu/sls/downloads/movie/
 
 Marshall, Christopher. (2019 December 18).  What is named entity recognition (NER) and how can I use it?".
 Medium. https://medium.com/mysuperai/what-is-named-entity-recognition-ner-and-how-can-i-use-it-2b68cf6f545d
+
+Tran, V.C., Nguyen N.T., Fujita H., Hoang, D.T. (2017). A combination of active learning and self-learn for named entity recognition
+on Twitter using conditional random fields. Elsevier, 132, 179-187.
 
 Vasilis, Theo. (2022 February 9). When Data Gets Too Big Why You Need Structured Data. apify.
 https://blog.apify.com/when-data-gets-too-big-why-you-need-structured-data/
