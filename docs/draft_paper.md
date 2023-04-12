@@ -24,7 +24,7 @@ To focus the research, training, and building of the custom NER model, the follo
 
 ## 3. Related Work
 
-There is a large body of existing work investigating the application of CRF to the problem of NER.  Tran et al. (2017) developed "a method that combines active learning and self-learning to reduce the labeling effort for the named entity recognition task from tweet streams by using both machine-labeled and manually-labeled data...[showing] it can significantly imporve the performance of the [CRF] systems (Tran et al., 2017, p. 1)."  
+There is a large body of existing work investigating the application and the improvement of CRF models to the problem of NER.  Tran et al. (2017) developed "a method that combines active learning and self-learning to reduce the labeling effort for the named entity recognition task from tweet streams by using both machine-labeled and manually-labeled data...[showing] it can significantly imporve the performance of the [CRF] systems (Tran et al., 2017, p. 1)."  VeeraSekharReddy et al. (2022) found that when a "CRF classifier is integrated into an active learning-trained hybrid model...it can shorten the time it takes for the model to converge and cut down on the labor intensive cost of traditional approaches (VerraSekharReddy, 2022)."  Liu et al "proposed a novel NER system for tweets, which combines a KNN classifier with a CRF labeler under a semi-supervised learning framework...[showing] the effectiveness of [their] method (Lui 2011)."
 
 ## 4. Dataset
 
@@ -74,7 +74,8 @@ The data can be found here:
 
 https://groups.csail.mit.edu/sls/downloads/movie/
 
-<p></p>
+## 5. Exploratory Data Analysis
+
 
 
 
@@ -91,14 +92,20 @@ https://groups.csail.mit.edu/sls/downloads/movie/
 
 ## Sources
 
-Marshall, Christopher. (2019 December 18).  What is named entity recognition (NER) and how can I use it?".
+Liu, X., Zhang S., Wei F., Zhou M. (2011). Recognizing Named Entities in Tweets. Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies - Volume 1June 2011 Pages 359–367.
+
+Marshall, Christopher. (2019 December 18).  What is named entity recognition (NER) and how can I use it?.
 Medium. https://medium.com/mysuperai/what-is-named-entity-recognition-ner-and-how-can-i-use-it-2b68cf6f545d
+
+Sienčnik, Scharolta Katharina. 2015. Adapting word2vec to Named Entity Recognition. In Proceedings of the 20th Nordic Conference of Computational Linguistics (NODALIDA 2015), pages 239–243, Vilnius, Lithuania. Linköping University Electronic Press, Sweden.
 
 Tran, V.C., Nguyen N.T., Fujita H., Hoang, D.T. (2017). A combination of active learning and self-learn for named entity recognition
 on Twitter using conditional random fields. Elsevier, 132, 179-187.
 
 Vasilis, Theo. (2022 February 9). When Data Gets Too Big Why You Need Structured Data. apify.
 https://blog.apify.com/when-data-gets-too-big-why-you-need-structured-data/
+
+VeeraSekharReddy B., Rao, K. S., and Koppula, N., "Named Entity Recognition using CRF with Active Learning Algorithm in English Texts," 2022 6th International Conference on Electronics, Communication and Aerospace Technology, Coimbatore, India, 2022, pp. 1041-1044, doi: 10.1109/ICECA55336.2022.10009592.
 
 Wikipedia. (2022, December 13). Inside-outside-beginning(tagging). https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/reference_list_electronic_sources.html 
 
