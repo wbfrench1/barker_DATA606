@@ -90,8 +90,6 @@ https://groups.csail.mit.edu/sls/downloads/movie/
 
 
 
-
-
 ## Sources
 
 Liu, X., Zhang S., Wei F., Zhou M. (2011). Recognizing Named Entities in Tweets. Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies - Volume 1June 2011 Pages 359–367.
