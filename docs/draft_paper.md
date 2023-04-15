@@ -30,6 +30,7 @@ There is a large body of existing work investigating the application and the imp
 
 <p>The data used to train both the existing spaCy and the custom CRF NER model is a combination of two datasets--eng.bio and trivia.bio--that are a part of the Spoken Language Systems (SLS) project in MIT's Computer Science and Artificial Intelligence Laboratory.  Each dataset includes a list of movie trivia questions and an entity tag.  In training the models, a supervised learning task, the dependent target variable is the NER tag while the words in the trivia questions form the basis for the independent variable features.  Read on for more information on the dataset</p>
 
+![](../images/Movie_trivia_data_exemplar.JPG)
 
 **Eng Dataset**
 
