@@ -78,10 +78,12 @@ https://groups.csail.mit.edu/sls/downloads/movie/
 
 ## 5. Exploratory Data Analysis
 
-To better understand the datasets, exploratory data analysis was conducted.  Reviewing a count of the various entity tags 
+<img align="right" src=../images/eng_train.bio_entity_count2.JPG>
+To better understand the datasets, exploratory data analysis was conducted.  The data in the eng.train.bio dataset was counted by each entity tag (see below).  The resulting table highlighted that a given entity could contain several words.  For example, the actor Harrison Ford would be reprsented as b-actor Harrison and i-actor Ford.  While the actor Madonna would be reprsented as i-actor Madonna.  
 
 
-![](../images/eng_train.bio_entity_count.JPG)
+
+
 
 
 
