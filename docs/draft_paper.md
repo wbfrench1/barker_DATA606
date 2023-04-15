@@ -30,7 +30,7 @@ There is a large body of existing work investigating the application and the imp
 
 <p>The data used to train both the existing spaCy and the custom CRF NER model is a combination of two datasets--eng.bio and trivia.bio--that are a part of the Spoken Language Systems (SLS) project in MIT's Computer Science and Artificial Intelligence Laboratory.  Each dataset includes a list of movie trivia questions and an entity tag.  In training the models, a supervised learning task, the dependent target variable is the NER tag while the words in the trivia questions form the basis for the independent variable features.  Read on for more information on the dataset</p>
 
-![](../images/Movie_trivia_data_exemplar.JPG)
+![](../images/Movie_trivia_data_exemplar2.JPG)
 
 **Eng Dataset**
 
@@ -78,6 +78,10 @@ https://groups.csail.mit.edu/sls/downloads/movie/
 
 ## 5. Exploratory Data Analysis
 
+To better understand the datasets, exploratory data analysis was conducted.  Reviewing a count of the various entity tags 
+
+
+![](../images/eng_train.bio_entity_count.JPG)
 
 
 
@@ -85,11 +89,11 @@ https://groups.csail.mit.edu/sls/downloads/movie/
 
 
 
-
-
-
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
 ## Sources
 
 Liu, X., Zhang S., Wei F., Zhou M. (2011). Recognizing Named Entities in Tweets. Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies - Volume 1June 2011 Pages 359–367.
