@@ -54,7 +54,7 @@ IOB2 (Inside, Outside, Beginning) format "is a common tagging format for tagging
 | ---------------------- | -----------| ---                                  |
 |outside                 | outside    | untracked entity                     |
 |actor                   |  actor     | person's name acting in the movie    |
-|year                   |year      | two and four digit years            |      
+|year                    |year      | two and four digit years            |      
 | genre                  | genre      | movie's subject matter               |
 | director               | director   | person's name in charge of movie     |
 | song                   | soundtrack | song's in a movie                    |
@@ -78,10 +78,18 @@ https://groups.csail.mit.edu/sls/downloads/movie/
 
 ## 5. Exploratory Data Analysis
 
-<img align="right" src=../images/eng_train.bio_entity_count2.JPG>
-To better understand the datasets, exploratory data analysis was conducted.  The data in the eng.train.bio dataset was counted by each entity tag (see below).  The resulting table highlighted that a given entity could contain several words.  For example, the actor Harrison Ford would be reprsented as b-actor Harrison and i-actor Ford.  While the actor Madonna would be reprsented as i-actor Madonna.  
+<img align="right" src=../images/combined_dataset_entity_count2.JPG>
+<p>Consisting of words and IOB2 labels, the data set appeared relatively straight-forward.  However, the owners of the data did not describe the datasets.  To better understand the datasets, the data were merged into a single set, additional columns were added to track question number, dataset source, and the IOB2 label was divided into it's bio label and it's entity label.  Exploratory data analysis was conducted.</p>
+  
+<p>The data were aggregated by iob2_label to determine how many entities existed in the data.  The resulting table, "IOB2_Label Count" highlighted that a particular IOB2_label had multiple components.  For example, the ACTOR tag appears twice, once as B-ACTOR--the first name of the actor--and again as I-ACTOR--any middle or last name associated with the actor.  To quantify the number of instances of each entity in the data, multi-word entities were combined into single strings, and then displayed in a bar graph.</p>
 
+<p>To confirm that the resulting, merged entities were meaninful, a sample of the merged entities was then displayed to confirm the meaningfulness of the combined entry.</p>
 
+## 6. Pre-Processing
+
+<p>The CRF and spaCy NER models required different input data formats.  
+  
+  To prepare the data for the CRF model, the dataframe was converted int a list of sentences where each sentence was itself a list of tuples containing one word from the sentence, that word's POS tag, and that word's IOB2 tag.  </p>
 
 
 
