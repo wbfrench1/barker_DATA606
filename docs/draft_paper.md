@@ -79,31 +79,71 @@ https://groups.csail.mit.edu/sls/downloads/movie/
 ## 5. Exploratory Data Analysis
 
 <img align="right" src=../images/combined_dataset_entity_count2.JPG>
+
 <p>Consisting of words and IOB2 labels, the data set appeared relatively straight-forward.  However, the owners of the data did not describe the datasets.  To better understand the datasets, the data were merged into a single set, additional columns were added to track question number, dataset source, and the IOB2 label was divided into it's bio label and it's entity label.  Exploratory data analysis was conducted.</p>
-  
-<p>The data were aggregated by iob2_label to determine how many entities existed in the data.  The resulting table, "IOB2_Label Count" highlighted that a particular IOB2_label had multiple components.  For example, the ACTOR tag appears twice, once as B-ACTOR--the first name of the actor--and again as I-ACTOR--any middle or last name associated with the actor.  To quantify the number of instances of each entity in the data, multi-word entities were combined into single strings, and then displayed in a bar graph.</p>
+
+<img align="right" src=../images/movie_entity_count.JPG>
+<p>In the "LOB2_Label_count" table, the data were aggregated by iob2_label to determine how many unique entities existed in the data.  The resulting table, "IOB2_Label Count" highlighted that a particular IOB2_label had multiple components.  For example, the ACTOR tag appears twice, once as B-ACTOR--the first descriptor of the actor name--and again as I-ACTOR--any additional name descriptor associated with the actor.  To quantify the number of instances of each entity in the data, multi-word entities were combined into single strings, and then displayed in a bar graph called the "Move Entity Count - Combined Data Set.</p>
 
 <p>To confirm that the resulting, merged entities were meaninful, a sample of the merged entities was then displayed to confirm the meaningfulness of the combined entry.</p>
 
 ## 6. Pre-Processing
 
-<p>The CRF and spaCy NER models required different input data formats.  
+<p>Neither the CRF nor spaCy NER models used the same data format as was provided by the movie trivia data source.  Preprocessing was required to match the model's required data format and, for the CRF model, feature engineering was then conducted on the training data.  SpaCy's input data neither required nor allowed enrichmetn of the training data.</p>
+
+
+### CRF Pre-Processing
+
+<p>To prepare the data for the CRF model, the dataframe was converted into a list of sentences where each sentence was itself a list of tuples containing one word from the sentence, that word's POS tag, and that word's IOB2 tag.  </p>
+<img align="left" src=../images/CRF_initial_dataset.JPG>
+
+<br><br><br><br><br><br><br>
+<p>Once in the list of sentences format, the data underwent feature engineering.  The following features were created for each word. </p>
+ 
+| Feature          | Feature Description                                                |
+| -----------------|----------------------------------------------                      |
+| bias             | the bias for the model                                             |
+| word.lower       | the lower case form of the word                                    |
+| word[-3:]        | the last 3 letters fo the word                                     |
+| word[-2:]        | the last 2 letters fo the word                                     |
+| word.isupper     | boolean value - true if word is upper case else false              |
+| word.istitle     | boolean value - true if word is title else false                   |
+| word.isdigit     | boolean value - true if word is digit else false                   |
+| postag           | part of speech tag                                                 |
+| postag[:2]       | first two characters in the part of speech tag                     |
+| BOS              | boolean value - tests if a word is the beginning of the sentence   |
+| -1: word.lower   | prior word - lower case form                                       |
+| -1: word.istitle | prior word - boolean value - true if word is title else false      |
+| -1: word.isupper | prior word - boolean value - true if word is upper case else false |
+| -1: postag       | prior word - part of speech tag                                    |
+| -1: postag[:2]   | prior word - first two characters in the part of speech tag        |
+| +1: word.lower   | next word - lower case form                                        |
+| +1: word.istitle | next word - boolean value - true if word is title else false       |
+| +1: word.isupper | next word - boolean value - true if word is upper case else false  |
+| +1: postag       | next word - part of speech tag                                     |
+| +1: postag[:2]   | next word - first two characters in the part of speech tag         |
+
+<p>As a part of the feature creation the list of sentences was converted from its list of sentences that were structured as lists of tuples to one list of dictionaries, where each dictionary contained the feature enrichment of one word.  In this new format, there was no distinction between the ending of one sentence and the beginning of the next sentence.  Finally the data were split into a training and a test set in prepration for training the CRF model. 
+
   
-  To prepare the data for the CRF model, the dataframe was converted int a list of sentences where each sentence was itself a list of tuples containing one word from the sentence, that word's POS tag, and that word's IOB2 tag.  </p>
+### SpaCy Pre-Processing
 
-
-
-
-
-
-
-
-
+<p>SpaCy's NER model requires a completely different format for model training.  The spaCy model requires that the movie trivia questions be configured as a list of 2 element tuples, where each tuple contains the movie trivia question as a string and a dictionary with one key called entities and value that is a list of 3 element tuples, where the first two elements are integers representing the location of an entity in the sentence string and the last element is a the IOB2_label.
 <br>
 <br>
-<br>
-<br>
-<br>
+  
+<img align="left" src=../images/spaCy_sentence_data_format.JPG>
+
+<br><br><br><br><br><br><br><br><br><br><br>
+  
+## 7. Models
+
+  
+### CRF Model
+  The first NER model implemented was the conditional random field model identified by Dipanjan Sarkar in his book "Text Analytics with Python".  As Sarkar explains "the key point to remember ... is that NER is a sequence modeling problem at its core.  It is more related to the classification suite of problems, wherein we need a labeled dataset to train a classifier (Sarkar, 2019).
+  
+  
+<br><br><br><br><br><br>
 ## Sources
 
 Liu, X., Zhang S., Wei F., Zhou M. (2011). Recognizing Named Entities in Tweets. Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies - Volume 1June 2011 Pages 359–367.
