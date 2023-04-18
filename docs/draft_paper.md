@@ -140,17 +140,25 @@ https://groups.csail.mit.edu/sls/downloads/movie/
 
   
 ### CRF Model
-  The first NER model implemented was the conditional random field model identified by Dipanjan Sarkar in his book "Text Analytics with Python".  As Sarkar explains "the key point to remember ... is that NER is a sequence modeling problem at its core.  It is more related to the classification suite of problems, wherein we need a labeled dataset to train a classifier (Sarkar, 2019).
-  
+  <p>The first NER model implemented was the conditional random field model identified by Dipanjan Sarkar in his book "Text Analytics with Python".  As Sarkar explains "the key point to remember ... is that NER is a sequence modeling problem at its core.  It is more related to the classification suite of problems, wherein we need a labeled dataset to train a classifier (Sarkar, 2019).  "In sequential text tagging, the CRF treats text data as a linear chain, a basic network with nodes between adjacent words....the CRF [model] predicts the [IOB2] tag Y based on the input [movie question] X by reprsenting a probabilty distribution p(y|x) (Hidayatullah, 2022).</p>
+ 
+ <p>To implement the CRF model, the sklearn-crfsuite was implemented.  The model has several parameters, including L1 and L2 regularization constraints and an upper bound on the maximum number of iterations.  For the purposes of the project, L1 and L2 constraints were set to 0.1 and the maximum iterations were capped at 100, 150, and 200.  The success of the model was measured using precision, recall, and f1-score.  The best results from the model were a weighted average precision, recall, and f1-score of 0.86 out of 1. 
+
+### SpaCy Model
+ <p>The second NER model implemented was spaCy's proprietary NER model.  
   
 <br><br><br><br><br><br>
 ## Sources
 
+A. F. Hidayatullah, R. A. Apong, D. T. C. Lai and A. Qazi, "Extracting Tourist Attraction Entities from Text using Conditional Random Fields," 2022 IEEE 7th International Conference on Information Technology and Digital Applications (ICITDA), Yogyakarta, Indonesia, 2022, pp. 1-6, doi: 10.1109/ICITDA55840.2022.9971310.
+ 
 Liu, X., Zhang S., Wei F., Zhou M. (2011). Recognizing Named Entities in Tweets. Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies - Volume 1June 2011 Pages 359–367.
 
 Marshall, Christopher. (2019 December 18).  What is named entity recognition (NER) and how can I use it?.
 Medium. https://medium.com/mysuperai/what-is-named-entity-recognition-ner-and-how-can-i-use-it-2b68cf6f545d
 
+Sarkar, Dipanjan. 2019. Text Analytics with Python. Apress.
+ 
 Sienčnik, Scharolta Katharina. 2015. Adapting word2vec to Named Entity Recognition. In Proceedings of the 20th Nordic Conference of Computational Linguistics (NODALIDA 2015), pages 239–243, Vilnius, Lithuania. Linköping University Electronic Press, Sweden.
 
 Tran, V.C., Nguyen N.T., Fujita H., Hoang, D.T. (2017). A combination of active learning and self-learn for named entity recognition
