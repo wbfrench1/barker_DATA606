@@ -145,15 +145,40 @@ https://groups.csail.mit.edu/sls/downloads/movie/
  <p>To implement the CRF model, the sklearn-crfsuite was implemented.  The model has several parameters, including L1 and L2 regularization constraints and an upper bound on the maximum number of iterations.  For the purposes of the project, L1 and L2 constraints were set to 0.1 and the maximum iterations were capped at 100, 150, and 200.  The success of the model was measured using precision, recall, and f1-score.  The best results from the model were a weighted average precision, recall, and f1-score of 0.86 out of 1. 
 
 ### SpaCy Model
- <p>The second NER model implemented was spaCy's proprietary NER model.  
+ <p>The second NER model implemented was spaCy's proprietary NER model.  There is not a great deal of available information on the spaCy model.  SpaCy describes it's model as "A transition-based named entity recognition component.  The entity recognizer identifies non-overlapping labelled spans of tokens.  The transition-based algorithm used encodes certain assumptions that are effective for "traditional" named entity recognition" (Entity Recognizer, 2023).  Looking at the parameters of the model, it is clear that spaCy is using a neural network of some sort. </p>
+ 
+ <p>SpaCy's model is more customizable than the sklearn's CRF model.  The training was conducted with spaCy's default values: spaCy's TransitionBasedParser.v2, a batch size of 1000, Adam optimizer, etc.  The results were not quite as a good as the CRF model.  
+ 
+ 
+ ## Model Improvement
+ <p>After successfully training the NER models and generating a base level of results.  The next step became how to improve performance. 
+ 
+### CRF Model
+ To find methods of improving performance, the academic journal articles were reviewed.  The most notable method for improving CRF model performance was increasing the amount of labeled training data.  As Tran el al. noted in their 2017 paper, "NER methods use supervised learning, requiring a large amount of training data with high accuracy (Tran 2017).  Researchers were still making the same observation five years later.  As VeeraSekhar et al note "like other supervised models, [CRF] needs a large amount of training data and has a poor convergence rate (VeeraSekhar et al., 2022).
+  However, another method for improving CRF performance was improving the features of the words in the training data.  The first attempt to improve the model through feature engineering was modeled on Poddar et al's 2020 paper.  They proposed "the use of Word2vec model context words [to help] predict the target word easily, and found "with the use of Word2vec, we have produced a good result for Named Entity Recognition. (Poddar etal 2020).  Gensim's word2vec model was implemented on each word in the training data.  Viewing the 
   
+  
+  That is to say "enhancing supervised methods with unsupervised word representations can ameliorate [the annotated data problem] (Siencnik 2015).  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 <br><br><br><br><br><br>
 ## Sources
 
 A. F. Hidayatullah, R. A. Apong, D. T. C. Lai and A. Qazi, "Extracting Tourist Attraction Entities from Text using Conditional Random Fields," 2022 IEEE 7th International Conference on Information Technology and Digital Applications (ICITDA), Yogyakarta, Indonesia, 2022, pp. 1-6, doi: 10.1109/ICITDA55840.2022.9971310.
- 
+
+Entity Recognizer. (2023, April 18) . Retrieved from https://spacy.io/api/entityrecognizer
+
 Liu, X., Zhang S., Wei F., Zhou M. (2011). Recognizing Named Entities in Tweets. Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies - Volume 1June 2011 Pages 359–367.
 
+Poddar, K., Mehta, P., Gatty, V. (September 2020). Named Entity Recognition using Word2vec. International Research Journal of Engineering and Technology. - Volumne 07 Issue09 Pages 1818 - 1820.
+  
 Marshall, Christopher. (2019 December 18).  What is named entity recognition (NER) and how can I use it?.
 Medium. https://medium.com/mysuperai/what-is-named-entity-recognition-ner-and-how-can-i-use-it-2b68cf6f545d
 
