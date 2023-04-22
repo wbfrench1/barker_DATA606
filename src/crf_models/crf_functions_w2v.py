@@ -281,7 +281,7 @@ def word2features_w2v_kmeans_clstr(l_sent: list, i: int, dict_word_cluster: dict
 
 
 
-def sent2features_w2v(l_sent:list, dict_word_cluster: dict ) -> list:
+def sent2features_w2v_kmeans_clstr(l_sent:list, dict_word_cluster: dict ) -> list:
     '''   Description:  Takes a sentence as a list of word tuples and returns a
                         list of dictionaries. The list contains tuples of
                         sentences, where each tuple is broken up into a word in
