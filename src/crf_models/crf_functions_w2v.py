@@ -210,3 +210,21 @@ def sent2labels(l_sent: list) -> list:
     '''
 
     return [label for token, postag, label in l_sent]
+
+
+
+def create_w2v_feature_dict (word2vec_model, word):
+    '''   Description:  Takes a word2vec model and a word that is in the
+                        model and returns a dictionary representings the 
+                        word2vec vector, which can be added to the word's 
+                        feature vector in the training data
+                        
+
+          Returns:      dictionary of elements in the word2vec vector
+    
+    '''
+
+    dict_w2v = {}
+    for sub_feat_num in range(len(word2vec_model.wv[word])):
+        dict_w2v.update({'w2v_' + str(sub_feat_num): word2vec_model.wv[word][sub_feat_num]})
+    return dict_w2v
