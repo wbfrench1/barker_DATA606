@@ -248,7 +248,7 @@ def word2features_w2v_kmeans_clstr(l_sent: list, i: int, dict_word_cluster: dict
                 'postag[:2]': postag[:2],
                }
     
-    features.update( {'kmeans_word2vec_clstr_num' : dict_word_cluster['movie']} )
+    features.update( {'kmeans_word2vec_clstr_num' : dict_word_cluster[word]} )
 
     if i > 0:
         word1 = l_sent[i - 1][0]
