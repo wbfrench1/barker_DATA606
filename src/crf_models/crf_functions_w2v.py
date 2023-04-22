@@ -140,7 +140,7 @@ def word2features_w2v(l_sent: list, i, word2vec_model) -> dict:
                 'postag[:2]': postag[:2],
                }
     
-    features.update( create_w2v_feature_dict(w2v_model, word) )
+    features.update( create_w2v_feature_dict(word2vec_model, word) )
 
     if i > 0:
         word1 = l_sent[i - 1][0]
