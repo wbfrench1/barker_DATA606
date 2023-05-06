@@ -94,7 +94,7 @@ https://groups.csail.mit.edu/sls/downloads/movie/
 
 ### CRF Pre-Processing
 
-<p>To prepare the data for the CRF model, the dataframe was converted into a list of sentences where each sentence was itself a list of tuples containing one word from the sentence, that word's POS tag, and that word's IOB2 tag.  </p>
+<p>To prepare the data for the CRF model, the data was converted into a list of sentences where each sentence was itself a list of tuples containing one word from the sentence, that word's POS tag, and that word's IOB2 tag.  </p>
 <img align="left" src=../images/CRF_initial_dataset.JPG>
 
 <br><br><br><br><br><br><br>
@@ -123,7 +123,7 @@ https://groups.csail.mit.edu/sls/downloads/movie/
 | +1: postag       | next word - part of speech tag                                     |
 | +1: postag[:2]   | next word - first two characters in the part of speech tag         |
 
-<p>As a part of the feature creation the list of sentences was converted from its list of sentences that were structured as lists of tuples to one list of dictionaries, where each dictionary contained the feature enrichment of one word.  In this new format, there was no distinction between the ending of one sentence and the beginning of the next sentence.  Finally the data were split into a training and a test set in prepration for training the CRF model. 
+<p>As a part of the feature creation the list of sentences was converted into to one list of dictionaries, where each dictionary contained the feature enrichment of one word.  In this new format, there was no distinction between the ending of one sentence and the beginning of the next sentence.  Finally the data were split into a training and a test set in prepration for training the CRF model. 
 
   
 ### SpaCy Pre-Processing
@@ -140,9 +140,9 @@ https://groups.csail.mit.edu/sls/downloads/movie/
 
   
 ### CRF Model
-  <p>The first NER model implemented was the conditional random field model identified by Dipanjan Sarkar in his book "Text Analytics with Python".  As Sarkar explains "the key point to remember ... is that NER is a sequence modeling problem at its core.  It is more related to the classification suite of problems, wherein we need a labeled dataset to train a classifier (Sarkar, 2019).  "In sequential text tagging, the CRF treats text data as a linear chain, a basic network with nodes between adjacent words....the CRF [model] predicts the [IOB2] tag Y based on the input [movie question] X by reprsenting a probabilty distribution p(y|x) (Hidayatullah, 2022).</p>
+  <p>As previously noted, the CRF NER model implemented is based on a model identified by Dipanjan Sarkar in his book "Text Analytics with Python".  As Sarkar explains "the key point to remember ... is that NER is a sequence modeling problem at its core.  It is more related to the classification suite of problems, wherein we need a labeled dataset to train a classifier (Sarkar, 2019).  Hidayatullah further explains that "in sequential text tagging, the CRF treats text data as a linear chain, a basic network with nodes between adjacent words....the CRF [model] predicts the [IOB2] tag Y based on the input [movie question] X by reprsenting a probabilty distribution p(y|x) (Hidayatullah, 2022).</p>
  
- <p>To implement the CRF model, the sklearn-crfsuite was implemented.  The model has several parameters, including L1 and L2 regularization constraints and an upper bound on the maximum number of iterations.  For the purposes of the project, L1 and L2 constraints were set to 0.1 and the maximum iterations were capped at 100, 150, and 200.  The success of the model was measured using precision, recall, and f1-score.  The best results from the model were a weighted average precision, recall, and f1-score of 0.86 out of 1. 
+ <p>To implement the CRF model, the sklearn-crfsuite library was used in conjuction with sklearn's GridSearchCV library.  The sklearn CRF model has several parameters, including L1 and L2 regularization constraints and an upper bound on the maximum number of iterations.  Regularization is used to reduce the potential overfitting or underfitting of a model on its training data.  The sklearn GridSearchCV library was used to search for the optimal regularization constraints and to implement Cross Validation.  Cross validation is a method that trains and evaluates machine learning models on subsets of the training data.  Cross validation further works to mitigate the potential for model overfitting on training data.  The weighted f1-score was used by the grid search tool to identify the best model.  F1-score is the harmonic mean of a classification model's precision and recall scores.  The results from the best model were a weighted average precision, recall, and f1-score of 0.86 out of 1. 
 
 ### SpaCy Model
  <p>The second NER model implemented was spaCy's proprietary NER model.  There is not a great deal of available information on the spaCy model.  SpaCy describes it's model as "A transition-based named entity recognition component.  The entity recognizer identifies non-overlapping labelled spans of tokens.  The transition-based algorithm used encodes certain assumptions that are effective for "traditional" named entity recognition" (Entity Recognizer, 2023).  Looking at the parameters of the model, it is clear that spaCy is using a neural network of some sort. </p>
@@ -177,10 +177,10 @@ https://groups.csail.mit.edu/sls/downloads/movie/
 <br><br><br><br><br><br>
 ## Sources
 
-A. F. Hidayatullah, R. A. Apong, D. T. C. Lai and A. Qazi, "Extracting Tourist Attraction Entities from Text using Conditional Random Fields," 2022 IEEE 7th International Conference on Information Technology and Digital Applications (ICITDA), Yogyakarta, Indonesia, 2022, pp. 1-6, doi: 10.1109/ICITDA55840.2022.9971310.
-
 Entity Recognizer. (2023, April 18) . Retrieved from https://spacy.io/api/entityrecognizer
 
+Hidayatullah, A. F., Apong R. A., Lai, D. T. C., and Qazi,  A., "Extracting Tourist Attraction Entities from Text using Conditional Random Fields," 2022 IEEE 7th International Conference on Information Technology and Digital Applications (ICITDA), Yogyakarta, Indonesia, 2022, pp. 1-6, doi: 10.1109/ICITDA55840.2022.9971310.
+ 
 Liu, X., Zhang S., Wei F., Zhou M. (2011). Recognizing Named Entities in Tweets. Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies - Volume 1June 2011 Pages 359–367.
 
 Poddar, K., Mehta, P., Gatty, V. (September 2020). Named Entity Recognition using Word2vec. International Research Journal of Engineering and Technology. - Volumne 07 Issue09 Pages 1818 - 1820.
