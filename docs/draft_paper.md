@@ -144,7 +144,7 @@ https://groups.csail.mit.edu/sls/downloads/movie/
  
  <p>To implement the CRF model, the sklearn-crfsuite library was used in conjuction with sklearn's GridSearchCV library.  The sklearn CRF model has several parameters, including L1 and L2 regularization constraints and an upper bound on the maximum number of iterations.  Regularization is used to reduce the potential overfitting or underfitting of a model on its training data.  The sklearn GridSearchCV library was used to search for the optimal regularization constraints and to implement Cross Validation.  Cross validation is a method that trains and evaluates machine learning models on subsets of the training data.  Cross validation further works to mitigate the potential for model overfitting on training data.  The weighted f1-score was used by the grid search tool to identify the best model.  F1-score is the harmonic mean of a classification model's precision and recall scores.  The results from the best model were a weighted average precision, recall, and f1-score of 0.86 out of 1. 
 
- ![](../images/CRF_initial_performance_metrics_smaller.JPG)
+![](../images/CRF_initial_performance_metrics_smaller.JPG)
  
  
 ### SpaCy Model
@@ -162,15 +162,22 @@ https://groups.csail.mit.edu/sls/downloads/movie/
   
   The first attempt to improve the model through feature engineering was modeled on Poddar et al's 2020 paper.  Poddar proposed "the use of Word2vec model context words [to help] predict the target word easily, and found that "with the use of Word2vec, we have produced a good result for Named Entity Recognition. (Poddar etal 2020).  With this example in mind, Gensim's word2vec model was implemented on each word in the training data.  
   
-  As a test of the meaninfulness of the Word2vec vectors, the Word2vec function "most similar" was used on actor bruce willis's first name.  The result was a list the most similar vectors in the model and 8 of 10 of these were actors' names suggesting that Word2vec vectors could be useful elements in the CRF feature vector.  Unfortunately, including the vectors as a feature did not effect the performance of the model.
+  As a test of the meaninfulness of the Word2vec vectors, the Word2vec function "most similar" was used on actor bruce willis's first name.  The result was a list the most similar vectors in the model and 8 of 10 of these were actors' names suggesting that Word2vec vectors could be useful elements in the CRF feature vector.  Unfortunately, including the vectors as a feature did not affect the performance of the model.
+  
+  Word2vec Vector Similarity             |  CRF with Word2vec Feature Performance
+:-------------------------:|:-------------------------:
+  ![](../images/word2_vec_similarity_bruce.JPG)  |  ![](../images/CRF_w_word2vec_feature_performance_metrics_smaller.JPG)
   
   More research was conducted, which validated the lackluster effect of including Word2vec vectors in CRF feature vectors.  Sienčnik cited a report by "Banasal et al. (2014) that simply adding the relevant word vector to the feature vector during training does not yield improved results" (Sienčnik, 2015).  However, this research did provide a possible method for effectively incorporating clustered Word2vec vectors in the CRF feature vectors to improve performance.  Instead of merely including the word vector Siencnik suggested using Guo et al's idea of "clustering word vectors"  (Sienčnik, 2015).  With this finding in mind, the Word2vec vectors were clustered using kmeans clustering.  An attempt was made to identify the optimal number clusters usign the  silhoette score as the decision metric.  Unfortunately, the silhouete score started high and became progressively smaller with the number of clusters undertaken.  In contrast, an effective clustering search should have generated a series of valleys and peaks associated with various numbers of clusters.  The optimal number of clusters would have occurred at the highest peak.  With no clear peak identified,  this in mind, 50 clusters was selected and the model was retrained.  Again there was no improvement to the results.  
+  
+  ![](../images/CRF_w_word2vec_clusters_feature_performance_metrics.JPG_smaller.JPG)
 
 ### spaCy Model
  Because the spaCy model only accepts sentence strings and entity tags as inputs, the opportunity to improve model performance is through it configuration file.  The configuration file contains a large number of parameters.  For the purposes of this project, several parameters were selected.  Additional feature attributes were added to spaCy's feature vectors, including the part of speech tag ("TAG") and the dependenchy tag ("DEP").  Additional layers were added to the MaxoutWindowEncoder.v2.  The number of layers in the TransitionBasedParser.v2 were increased from 64 to 96.  The highest performing model included all of the changes to the initial configuration file and resulted in a weighted F1 score of 0.77.
 
 
- 
+   ![](../images/Spacy_best_performance_metrics_smaller.JPG)
+  
  ## Future Work
   <p>There are several obvious opportunties for future work all of which are related to the CRF Model.  First, Siencnik and Guo were both separately and independently able to use unsupervised clustering of words to improve the performance of their NER models.  In each case, the data used--Reuters English newswire from 1996 to 1997 for Siencnik and English Wikipedia through August 2012 for Guo-- were far larger than than the movie trivia data used in this project.  It is possible that more movie trivia data is needed to establish meaningful clusters.  A future experiment could seek out additional labelled movie data and make a second attempt at clustering.  It's possible that more instances would generate better results.</p>
   
