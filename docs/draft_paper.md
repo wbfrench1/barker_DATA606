@@ -3,9 +3,13 @@
 ## Identifying Entities of interest in Movie Trivia Questions
 ## By: Barker French
 <br>
+
+### Powerpoint slides: https://docs.google.com/presentation/d/1AQzS0IAGJv15k6N0uHkprbYxlrMP6mqUOQH-_rsheQA/edit#slide=id.g238df54fde0_0_0<br>
+### Presentation Video: https://vimeo.com/821040603/5ffd7a96d5?share=copy
+<br>
 <br>
 
-## 1. Introduction
+## 1. Introduction: 
 
 "Over 2.5 quintillion bytes of data are generated every day.  80% of it is unstructured" (Vasilis, 2022), and we, humans, can't 
 consume and classify all of this data on our own.  However, with the help of computers, humans can hope to make sense of this data.
