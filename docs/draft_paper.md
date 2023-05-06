@@ -78,12 +78,17 @@ https://groups.csail.mit.edu/sls/downloads/movie/
 
 ## 5. Exploratory Data Analysis
 
-<img align="right" src=../images/combined_dataset_entity_count2.JPG>
 
 <p>Consisting of words and IOB2 labels, the data set appeared relatively straight-forward.  However, the owners of the data did not provide basic descriptive information about the data.  To better understand the dataset, the data were merged into a single set, additional columns were added to track question number, original dataset source, and the IOB2 label was divided into it's bio label and it's entity label.  Exploratory data analysis was conducted.</p>
 
-<img align="right" src=../images/movie_entity_count.JPG>
+  
+
 <p>In the "LOB2_Label_count" table, the data were aggregated by iob2_label to determine how many IOB2 entities existed in the data.  The resulting table, "IOB2_Label Count" highlighted that a particular movie entity could have multiple IOB2_Label components.  For example, the ACTOR tag appears twice, once as B-ACTOR--the first descriptor of an actor;s name--and again as I-ACTOR--the descriptor of any additional names associated with the actor (e.g. I-ACTOR Cher, or I-ACTOR Harrison B-ACTOR Ford, or b-ACTOR Daniel I-ACTOR Day I-ACTOR Lewis) .  To quantify the number of instances of each entity in the data, multi-word entities were combined into single strings, and then displayed in a bar graph called the "Move Entity Count - Combined Data Set.</p>
+
+LOB2 Lavel Count             |  Movie Entity Count
+:-------------------------:|:-------------------------:
+  ![](../images/combined_dataset_entity_count2.JPG)  |  ![](../images/movie_entity_count.JPG)
+
 
 <p>To confirm that the resulting, merged entities were meaninful, a sample of the merged entities was then displayed to confirm the meaningfulness of the combined entry.</p>
 
